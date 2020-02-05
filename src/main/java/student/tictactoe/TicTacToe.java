@@ -17,8 +17,8 @@ public class TicTacToe {
             return Evaluation.InvalidInput;
         }
 
-        // given an empty boardstate or boardstate that has less than 9 characters is an invalid input.
-        if (boardState.length() == 0 || boardState.length() != 9) {
+        // given a boardstate that has less than 9 characters is an invalid input.
+        if (boardState.length() != 9) {
             return Evaluation.InvalidInput;
         }
 
@@ -36,16 +36,13 @@ public class TicTacToe {
                 oCount++;
             }
         }
-        if (Math.abs(xCount - oCount) > 1) {
-            return Evaluation.InvalidInput;
-        }
 
         if (xCount == 0 && oCount == 0) {
             return Evaluation.InvalidInput;
         }
 
-
-        int k = 0;  //k iterates through string and new board is created to convert string to array
+        //k iterates through string and new board is created to convert string to array
+        int k = 0;
         char[][] board = new char[3][3];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -54,6 +51,51 @@ public class TicTacToe {
                     k++;
                 }
             }
+        }
+
+        //array that checks for Horizontal wins
+        boolean xWin = false;
+        boolean oWin = false;
+        for (int m = 0; m < 3; m++) {
+            if (board[m][0] == board[m][1] && board[m][1] == board[m][2]) {
+                if (board[m][1] == 'X') {
+                    xWin = true;
+                } else if (board[m][1] == 'O') {
+                    oWin = true;
+                }
+            }
+        }
+
+        //array checks for vertical wins
+        for (int n = 0; n < 3; n++) {
+            if (board[0][n] == board[1][n] && board[1][n] == board[2][n] && board[0][n] == 'X') {
+                xWin = true;
+            } else if (board[0][n] == board[1][n] && board[1][n] == board[2][n] && board[0][n] == 'O') {
+                oWin = true;
+            }
+        }
+
+        //array checks for diagonal wins
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == 'X') {
+            xWin = true;
+        } else if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == 'O') {
+            oWin = true;
+        }
+
+        //array check for anti-diagonal
+        if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == 'X') {
+            xWin = true;
+        } else if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == 'O') {
+            oWin = true;
+        }
+
+        // check for wins and unreachable state using the enum
+        if (oWin == true && xWin == true) {
+            return Evaluation.InvalidInput;
+        } else if (oWin = true) {
+            return Evaluation.Owins;
+        } else if (xWin = true) {
+            return Evaluation.Xwins;
         }
 
 

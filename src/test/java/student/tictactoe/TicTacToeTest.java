@@ -14,43 +14,48 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void simpleEmptyBoard() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(""));
+    }
+
+    @Test
     public void simpleNoWinnerBoard() throws Exception {
         assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("O...X.X.."));
     }
 
 
     @Test
-    public void simpleNoWinnerBoardOne() throws Exception {
-        assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("XOXOXXXOO"));
+    public void simpleTieBoardOne() throws Exception {
+        assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("OXOXXOOOX"));
     }
 
     @Test
-    public void XWinnerBoard() throws Exception {
-        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("XXX......"));
+    public void XRowWinnerBoard() throws Exception {
+        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("XXXOXOOOX"));
     }
 
     @Test
-    public void XWinnerBoardOne() throws Exception {
-        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("X..X..X.."));
+    public void XColumnWinnerBoard() throws Exception {
+        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("XOOX..X.."));
     }
 
     @Test
-    public void XWinnerBoardTwo() throws Exception {
-        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("X...X...X"));
+    public void XDiagonalWinnerBoard() throws Exception {
+        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("XO..XO..X"));
     }
 
     @Test
-    public void OWinnerBoard() throws Exception {
+    public void ORowWinnerBoard() throws Exception {
         assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("OOO......"));
     }
 
     @Test
-    public void OWinnerBoardOne() throws Exception {
+    public void OColumnWinnerBoard() throws Exception {
         assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("O..O..O.."));
     }
 
     @Test
-    public void OWinnerBoardTwo() throws Exception {
+    public void ODiagonalWinnerBoard() throws Exception {
         assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("O...O...O"));
     }
 
@@ -60,17 +65,17 @@ public class TicTacToeTest {
     }
 
     @Test
-    public void XWinnerBoardThree() throws Exception {
+    public void XWinnerUpperCaseCheckBoard() throws Exception {
         assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("X.Z-xaX!X"));
     }
 
     @Test
-    public void InvalidInputBoardOne() throws Exception {
+    public void InvalidInputNumbersBoardOne() throws Exception {
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("123456789"));
     }
 
     @Test
-    public void UnreachableStateBoard() throws Exception {
+    public void UnreachableStateTwoWinsBoard() throws Exception {
         assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("XXXOOO..."));
     }
 }
