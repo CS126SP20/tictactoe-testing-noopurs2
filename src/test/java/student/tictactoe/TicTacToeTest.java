@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 
 public class TicTacToeTest {
+
     @Test
     public void simpleNullBoard() throws Exception {
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(null));
@@ -46,27 +47,22 @@ public class TicTacToeTest {
 
     @Test
     public void ORowWinnerBoard() throws Exception {
-        assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("OOO......"));
+        assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("OoOXXOOXX"));
     }
 
     @Test
     public void OColumnWinnerBoard() throws Exception {
-        assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("O..O..O.."));
+        assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("OXXOXOOOX"));
     }
 
     @Test
     public void ODiagonalWinnerBoard() throws Exception {
-        assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("O...O...O"));
+        assertEquals(Evaluation.Owins, TicTacToe.evaluateBoard("OXXXOOXOO"));
     }
 
     @Test
     public void InvalidInputBoard() throws Exception {
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("XXXXXOXXX"));
-    }
-
-    @Test
-    public void XWinnerUpperCaseCheckBoard() throws Exception {
-        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("X.Z-xaX!X"));
     }
 
     @Test
@@ -77,5 +73,10 @@ public class TicTacToeTest {
     @Test
     public void UnreachableStateTwoWinsBoard() throws Exception {
         assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("XXXOOO..."));
+    }
+
+    @Test
+    public void ODiagonalWinnerBoardChecksExtraCharac() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("OXXXOOXOOO"));
     }
 }

@@ -8,9 +8,7 @@ the test cases for tic tac toe
 2.3.2020
  */
 public class TicTacToe {
-
-
-
+    /** this is the code for the board has different wins and cases**/
     public static Evaluation evaluateBoard(String boardState) {
         // check if string passed is null
         if (boardState == null) {
@@ -36,7 +34,13 @@ public class TicTacToe {
                 oCount++;
             }
         }
+        //the number of x's is more than os
+        int diff = xCount - oCount;
+        if (Math.abs(diff) > 1) {
+            return Evaluation.InvalidInput;
+        }
 
+        //a board that does not have any x and o so all different characters
         if (xCount == 0 && oCount == 0) {
             return Evaluation.InvalidInput;
         }
@@ -68,33 +72,40 @@ public class TicTacToe {
 
         //array checks for vertical wins
         for (int n = 0; n < 3; n++) {
-            if (board[0][n] == board[1][n] && board[1][n] == board[2][n] && board[0][n] == 'X') {
-                xWin = true;
-            } else if (board[0][n] == board[1][n] && board[1][n] == board[2][n] && board[0][n] == 'O') {
-                oWin = true;
+            if (board[0][n] == board[1][n] && board[1][n] == board[2][n]) {
+                if (board[0][n] == 'X') {
+                    xWin = true;
+                } else if (board[0][n] == 'O') {
+                    oWin = true;
+                }
+
             }
         }
 
         //array checks for diagonal wins
-        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == 'X') {
-            xWin = true;
-        } else if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == 'O') {
-            oWin = true;
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            if (board[0][0] == 'X') {
+                xWin = true;
+            } else if (board[0][0] == 'O') {
+                oWin = true;
+            }
         }
 
         //array check for anti-diagonal
-        if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == 'X') {
-            xWin = true;
-        } else if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == 'O') {
-            oWin = true;
+        if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            if (board[0][2] == 'X') {
+                xWin = true;
+            } else if (board[0][2] == 'O') {
+                oWin = true;
+            }
         }
 
         // check for wins and unreachable state using the enum
         if (oWin == true && xWin == true) {
-            return Evaluation.InvalidInput;
-        } else if (oWin = true) {
+            return Evaluation.UnreachableState;
+        } else if (oWin == true) {
             return Evaluation.Owins;
-        } else if (xWin = true) {
+        } else if (xWin == true) {
             return Evaluation.Xwins;
         }
 
