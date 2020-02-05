@@ -12,6 +12,10 @@ public class TicTacToe {
 
 
     public static Evaluation evaluateBoard(String boardState) {
+        // check if string passed is null
+        if (boardState == null) {
+            return Evaluation.InvalidInput;
+        }
 
         // given an empty boardstate or boardstate that has less than 9 characters is an invalid input.
         if (boardState.length() == 0 || boardState.length() != 9) {

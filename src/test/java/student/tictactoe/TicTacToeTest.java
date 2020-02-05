@@ -9,17 +9,18 @@ import static org.junit.Assert.*;
 
 public class TicTacToeTest {
     @Test
+    public void simpleNullBoard() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(null));
+    }
+
+    @Test
     public void simpleNoWinnerBoard() throws Exception {
         assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("O...X.X.."));
     }
 
-    @Test
-    public void simpleNoWinnerBoardOne() throws Exception {
-        assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("........."));
-    }
 
     @Test
-    public void simpleNoWinnerBoardTwo() throws Exception {
+    public void simpleNoWinnerBoardOne() throws Exception {
         assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("XOXOXXXOO"));
     }
 
