@@ -60,7 +60,7 @@ public class TicTacToeTest {
 
     @Test
     public void XWinnerBoardThree() throws Exception {
-        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("X.Z-Xax!X"));
+        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("X.Z-xaX!X"));
     }
 
     @Test
